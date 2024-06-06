@@ -83,12 +83,15 @@ def area(geometry):
 
     if geometry['type'] == 'Polygon':
         return polygon__area(geometry['coordinates'])
+
     elif geometry['type'] == 'MultiPolygon':
-        for i in range(0, len(geometry['coordinates'])):
-            _area += polygon__area(geometry['coordinates'][i])
+        for obj in geometry['coordinates']:
+            _area += polygon__area(obj)
 
     elif geometry['type'] == 'GeometryCollection':
-        for i in range(0, len(geometry['geometries'])):
-            _area += area(geometry['geometries'][i])
+        for obj in geometry['geometries']:
+            _area += area(obj)
+    elif geometry['type'] == 'LineString':
+        return polygon__area(geometry['coorginates'])
 
     return _area
