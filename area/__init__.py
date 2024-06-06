@@ -92,6 +92,6 @@ def area(geometry):
         for obj in geometry['geometries']:
             _area += area(obj)
     elif geometry['type'] == 'LineString':
-        return polygon__area(geometry['coorginates'])
+        return polygon__area(geometry['coordinates'])
 
     return _area
